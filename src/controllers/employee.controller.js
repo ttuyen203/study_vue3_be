@@ -4,6 +4,11 @@ class EmployeeController {
   async getAllEmployees(req, res) {
     try {
       const employees = await Employee.find({});
+      if (employees === 0) {
+        return res.status(404).json({
+          message: "Chưa có dữ liệu",
+        });
+      }
       return res.status(200).json(employees);
     } catch (error) {
       return res.status(400).json({
