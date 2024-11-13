@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import productRoute from "./src/routes/product.route.js";
 import employeeRoute from "./src/routes/employee.route.js";
+import userRoute from "./src/routes/user.route.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cors());
 
 app.use(productRoute);
 app.use(employeeRoute);
+app.use(userRoute);
 
 mongoose
   .connect(process.env.DB_URL)
