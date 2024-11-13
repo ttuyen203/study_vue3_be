@@ -4,12 +4,15 @@ class ProductController {
   async getAllProducts(req, res) {
     try {
       const products = await Product.find({});
-      return res.status(200).json({
-        message: "Lấy tất cả sản phẩm thành công",
-        data: products,
-      });
+
+      if (products.length === 0) {
+        return res.status(404).json({
+          message: "Không có dữ liệu",
+        });
+      }
+      return res.status(200).json(products);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
@@ -22,12 +25,9 @@ class ProductController {
           message: "Không tìm thấy sản phẩm",
         });
       }
-      return res.status(200).json({
-        message: "Lấy chi tiết sản phẩm thành công",
-        data: product,
-      });
+      return res.status(200).json(product);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
@@ -40,12 +40,9 @@ class ProductController {
           message: "Không tìm thấy sản phẩm",
         });
       }
-      return res.status(200).json({
-        message: "Tạo sản phẩm thành công",
-        data: product,
-      });
+      return res.status(200).json(product);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
@@ -60,12 +57,9 @@ class ProductController {
           message: "Không tìm thấy sản phẩm",
         });
       }
-      return res.status(200).json({
-        message: "Sửa sản phẩm thành công",
-        data: product,
-      });
+      return res.status(200).json(product);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
@@ -82,7 +76,7 @@ class ProductController {
         message: "Xóa sản phẩm thành công",
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }

@@ -6,12 +6,12 @@ class EmployeeController {
       const employees = await Employee.find({});
       if (employees === 0) {
         return res.status(404).json({
-          message: "Chưa có dữ liệu",
+          message: "Không có dữ liệu",
         });
       }
       return res.status(200).json(employees);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
@@ -26,7 +26,7 @@ class EmployeeController {
       }
       return res.status(200).json(employee);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
@@ -46,7 +46,7 @@ class EmployeeController {
 
       return res.status(201).json(employee);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
@@ -78,7 +78,7 @@ class EmployeeController {
 
       return res.status(200).json(employee);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
@@ -95,7 +95,7 @@ class EmployeeController {
         message: "Xóa thành công",
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
